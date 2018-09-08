@@ -10,7 +10,8 @@ import UIKit
 
 class ItemStore {
     var allItems = [Item]()
-    
+    var highValueItems = [Item]()
+    var theRest = [Item]()
     // create a random item
     @discardableResult func createItem() -> Item {
         let newItem = Item(random: true)
@@ -22,6 +23,9 @@ class ItemStore {
         for _ in 0..<5 {
             createItem()
         }
+        
+        highValueItems = allItems.filter{ $0.valueInDollars > 50 }
+        theRest = allItems.filter{ $0.valueInDollars <= 50 }
     }
     
 }
